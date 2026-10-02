@@ -4,6 +4,10 @@ import Appendix from './tabs/Appendix.jsx';
 import Battle from './tabs/Battle.jsx';
 import Search from './tabs/Search.jsx';
 import './styles/app.css';
+import searchIcon from './assets/nav/search.svg';
+import battleIcon from './assets/nav/battle.svg';
+import appendixIcon from './assets/nav/appendix.svg';
+import aboutIcon from './assets/nav/about.svg';
 
 // Layout component containing the Tab Navigation & Outlet
 function TabsLayout() {
@@ -21,10 +25,13 @@ function TabsLayout() {
       <div id="top">
         <h1>Cuber's Score</h1>
         <nav>
-          <NavLink to="search" style={getTabStyle}>Search</NavLink>
-          <NavLink to="battle" style={getTabStyle}>Battle</NavLink>
-          <NavLink to="appendix" style={getTabStyle}>Appendix</NavLink>
-          <NavLink to="about" style={getTabStyle}>About</NavLink>
+          <NavLink to="search" style={getTabStyle}>
+            <img src={searchIcon} alt="Search" />
+            Search
+          </NavLink>
+          <NavLink to="battle" style={getTabStyle}><img src={battleIcon} alt="Battle" />Battle</NavLink>
+          <NavLink to="appendix" style={getTabStyle}><img src={appendixIcon} alt="Appendix" />Appendix</NavLink>
+          <NavLink to="about" style={getTabStyle}><img src={aboutIcon} alt="About" />About</NavLink>
         </nav>
       </div>
       <div id="outlet-container">

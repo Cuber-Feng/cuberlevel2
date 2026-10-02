@@ -7,29 +7,35 @@
 form {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
-    width: 200px;
+    width: 150px;
     border-radius: 0;
-    border: 1px solid #ccc;
+    border: 0px;
+    border-bottom: 3px solid #ccc;
+    text-align: center;
+    font-family: 'Monaco';
+    text-transform: uppercase;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: #002FA7;
-    box-shadow: 0 0 5px rgba(0, 47, 167, 0.5);
+    border: 0px;
+    border-bottom: 3px solid #002FA7;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 0;
-    border: 1px solid #ccc;
+    border: 0px;
+    border-bottom: 3px solid #002FA7;
     background-color: #002FA7;
     color: white;
 }
@@ -78,6 +84,7 @@ table th.event-data {
 
 table {
     margin: 0 auto;
+    width: 100%;
 }
 
 @media (max-width: 646px) {
