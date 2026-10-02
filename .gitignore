@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+data
+wca_export.zip
+
+*/__pycache__

@@ -27,11 +27,20 @@ function TabsLayout() {
         <nav>
           <NavLink to="search" style={getTabStyle}>
             <img src={searchIcon} alt="Search" />
-            Search
+            <div className="tab-label">Search</div>
           </NavLink>
-          <NavLink to="battle" style={getTabStyle}><img src={battleIcon} alt="Battle" />Battle</NavLink>
-          <NavLink to="appendix" style={getTabStyle}><img src={appendixIcon} alt="Appendix" />Appendix</NavLink>
-          <NavLink to="about" style={getTabStyle}><img src={aboutIcon} alt="About" />About</NavLink>
+          <NavLink to="battle" style={getTabStyle}>
+            <img src={battleIcon} alt="Battle" />
+            <div className="tab-label">Battle</div>
+          </NavLink>
+          <NavLink to="appendix" style={getTabStyle}>
+            <img src={appendixIcon} alt="Appendix" />
+            <div className="tab-label">Appendix</div>
+          </NavLink>
+          <NavLink to="about" style={getTabStyle}>
+            <img src={aboutIcon} alt="About" />
+            <div className="tab-label">About</div>
+          </NavLink>
         </nav>
       </div>
       <div id="outlet-container">

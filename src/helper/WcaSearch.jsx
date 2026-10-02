@@ -96,7 +96,7 @@ export default function WcaSearch() {
               </div>
             </div>
           </div>
-          <div className="personal-records">
+          <div className="personal-records table-container">
             <table>
               <thead>
                 <tr>
