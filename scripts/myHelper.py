@@ -108,7 +108,7 @@ def makeFile(df, df_single):
     print(rows)
 
     # 保存成CSV（根据需要修改文件名）
-    result_df.to_csv('public/event_rank_summary.csv', index=False, encoding='utf-8-sig')
-    print("Summary saved to public/event_rank_summary.csv")
+    result_df.to_csv('src/assets/data/event_rank_summary.csv', index=False, encoding='utf-8-sig')
+    print("Summary saved to src/assets/data/event_rank_summary.csv")
         
         

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { idToEventName, formatTime } from "../helper/tools.js";
+import csvUrl from "../assets/data/event_rank_summary.csv?url";
 
 const headerMapping = {
   event_id: "Event",
@@ -17,7 +18,7 @@ const headerMapping = {
 export default function Appendix() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("../../public/event_rank_summary.csv")
+    fetch(csvUrl)
       .then((res) => res.text())
       .then((text) => {
         const rows = text
