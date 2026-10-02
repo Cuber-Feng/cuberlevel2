@@ -54,7 +54,7 @@ export default function Appendix() {
                   {row.map((cell, j) => (
                     <td key={j}>{
                       j == 0 ? idToEventName(cell) :
-                        j < 9 ? formatTime(data[i + 1][0], cell) : cell
+                        j < 9 ? formatTime(data[i + 1][0], cell, 'average') : cell
                     }</td>
                   ))}
                 </tr>
