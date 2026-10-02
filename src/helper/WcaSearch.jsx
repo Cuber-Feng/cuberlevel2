@@ -82,7 +82,7 @@ export default function WcaSearch() {
       {personData && (
         <div>
           <div className="cuber-info">
-            <img src={personData.person.avatar.thumb_url} alt={`${personData.person.name}'s avatar`} className="avatar" />
+            <img src={personData.person.avatar.url} alt={`${personData.person.name}'s avatar`} className="avatar" />
             <div className="cuber-details">
               <div className='name'>{codeToFlag(personData.person.country_iso2)}&nbsp;{personData.person.name}&nbsp;{personData.person.gender == 'm' ? '♂️' : '♀️'}</div>
               <div className="other-info">

@@ -48,8 +48,8 @@ button {
 }
 
 .avatar {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 100px;
+    max-width: 100px;
     object-fit: contain;
 }
 
@@ -78,4 +78,21 @@ table th.event-data {
 
 table {
     margin: 0 auto;
+}
+
+@media (max-width: 646px) {
+    .cuber-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .other-info {
+        justify-content: center;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
