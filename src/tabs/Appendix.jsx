@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { idToEventName, formatTime } from "../helper/tools.js";
+import { idToEventName, formatTime, formatLargeNumber } from "../helper/tools.js";
 import csvUrl from "../assets/data/event_rank_summary.csv?url";
 
 const headerMapping = {
@@ -54,7 +54,7 @@ export default function Appendix() {
                   {row.map((cell, j) => (
                     <td key={j}>{
                       j == 0 ? idToEventName(cell) :
-                        j < 9 ? formatTime(data[i + 1][0], cell, 'average') : cell
+                        j < 9 ? formatTime(data[i + 1][0], cell, 'average') : formatLargeNumber(cell)
                     }</td>
                   ))}
                 </tr>

@@ -28,6 +28,10 @@ export function codeToFlag(code) {
   );
 }
 
+export function formatLargeNumber(number) {
+  return `${Math.floor(number / 100)/10}K`;
+}
+
 export function formatTime(eventId, centiseconds, type = 'single') {
   if (centiseconds === null || centiseconds === undefined) return '-';
 
