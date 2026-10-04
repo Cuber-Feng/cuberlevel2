@@ -29,7 +29,6 @@ export default function Appendix() {
       });
   }, []);
 
-
   return (
     <div id="content" className="content">
       <div className="card">

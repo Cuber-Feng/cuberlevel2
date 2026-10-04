@@ -82,6 +82,11 @@ table th.event-data {
   text-align: end;
 }
 
+table td.event-score {
+  text-align: end;
+  background-color: rgba(184, 216, 216, 0.295);
+}
+
 table {
   margin: 0 auto;
   width: 100%;
