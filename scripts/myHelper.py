@@ -1,3 +1,4 @@
+from pathlib import Path
 import pandas as pd
         
 def save_to_csv(data_rows, filename):
@@ -108,6 +109,7 @@ def makeFile(df, df_single):
     print(rows)
 
     # 保存成CSV（根据需要修改文件名）
+    Path("src/assets/data").mkdir(parents=True, exist_ok=True)
     result_df.to_csv('src/assets/data/event_rank_summary.csv', index=False, encoding='utf-8-sig')
     print("Summary saved to src/assets/data/event_rank_summary.csv")
         
