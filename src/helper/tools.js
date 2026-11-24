@@ -81,7 +81,7 @@ export function getScore(eventId = '333', scoreArr = [], single = -1, average = 
     case 'minx':
     case 'skewb':
     case 'sq1':
-      if (average == -1) return -1;
+      if (average == -1) return 0;
       // ['222', '86', '143', '237', '356', '428', '530', '820', '44211', '183070']
       if (average <= Number(row[1])) return 100;
       if (average <= Number(row[2])) return 95 + (row[2] - average) / (row[2] - row[1]) * 5;
