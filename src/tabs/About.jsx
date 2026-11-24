@@ -1,5 +1,16 @@
 import '../styles/about.css';
+import { useEffect, useState } from 'react';
+
 export default function About() {
+
+    const [metadata, setMetadata] = useState(null);
+    useEffect(() => {
+        fetch(`${import.meta.env.BASE_URL}metadata.json`)
+        .then(res => res.json())
+        .then(data => setMetadata(data))
+        .catch(err => console.error(err));
+    }, []);
+
     return (
         <div id="content" className="content">
             <div className="card">
@@ -67,7 +78,7 @@ export default function About() {
 
                 <ul>
                     <li><strong>Result source: </strong><code>WCA API<br />(Real-time updates)</code></li>
-                    <li><strong>Appendix Table: </strong><code>WCA Result Export<br />(Last Updated: Sep-14, 2025)</code></li>
+                    <li><strong>Appendix Table: </strong><code>WCA Result Export<br />(Last Updated: {metadata?.export_date})</code></li>
 
                 </ul>
 

@@ -25,7 +25,7 @@ def formatResult(tick):
 def getResultByRank(sheet, rank):
     try:
         filtered = sheet[sheet['world_rank'] == rank]['best'].tolist()
-        print(f"Checking rank {rank}: {filtered}")  # DEBUG
+        # print(f"Checking rank {rank}: {filtered}")  # DEBUG
         if filtered:
             return filtered[0]
         if rank <= 1:
@@ -106,7 +106,7 @@ def makeFile(df, df_single):
 
     # 转成DataFrame
     result_df = pd.DataFrame(rows)
-    print(rows)
+    # print(rows)
 
     # 保存成CSV（根据需要修改文件名）
     Path("src/assets/data").mkdir(parents=True, exist_ok=True)

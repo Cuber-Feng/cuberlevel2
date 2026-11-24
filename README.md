@@ -4,14 +4,4 @@
 
 ## Update the data from WCA API
 
-run `update.py`, `unzip.py`, `gen.py`
-
-later try:
-
-```python
-import subprocess
-import sys
-
-for file in ["step1.py", "step2.py", "step3.py"]:
-    subprocess.run([sys.executable, file], check=True)
-```
+run `python ./scripts/main.py`
