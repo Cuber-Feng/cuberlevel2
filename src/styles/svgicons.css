@@ -1,0 +1,62 @@
+:root {
+  /* Primary theme */
+  --color-primary: #A47251;
+  --color-primary-light: #ffeeb1;
+
+  /* Neutral colors */
+  --color-text: #333;
+  --color-text-muted: #98a1b1;
+  --color-border: #e0e0e0;
+  --color-border-light: #e6eaf1;
+
+  /* Background colors */
+  --color-background: #fffae8;
+  --color-background-hover: #ffe099;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-text);
+  mask-position: center;
+
+  mask-repeat: no-repeat;
+  mask-size: contain;
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.nav-item.active .icon {
+  background-color: var(--color-primary);
+}
+
+.nav-item:hover .icon {
+  background-color: var(--color-primary);
+}
+
+.icon-search {
+  mask-image: url("../assets/nav/search.svg");
+  -webkit-mask-image: url("../assets/nav/search.svg");
+}
+
+.icon-battle {
+  mask-image: url("../assets/nav/battle.svg");
+  -webkit-mask-image: url("../assets/nav/battle.svg");
+}
+
+.icon-leaderboard {
+  mask-image: url("../assets/nav/leaderboard.svg");
+  -webkit-mask-image: url("../assets/nav/leaderboard.svg");
+}
+
+.icon-appendix {
+  mask-image: url("../assets/nav/appendix.svg");
+  -webkit-mask-image: url("../assets/nav/appendix.svg");
+}
+
+.icon-about {
+  mask-image: url("../assets/nav/about.svg");
+  -webkit-mask-image: url("../assets/nav/about.svg");
+}

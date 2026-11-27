@@ -1,51 +1,50 @@
-import { Routes, Route, Navigate, NavLink, Outlet } from 'react-router-dom';
-import About from './tabs/About.jsx';
-import Appendix from './tabs/Appendix.jsx';
-import Battle from './tabs/Battle.jsx';
-import Search from './tabs/Search.jsx';
-import './styles/app.css';
-import searchIcon from './assets/nav/search.svg';
-import battleIcon from './assets/nav/battle.svg';
-import appendixIcon from './assets/nav/appendix.svg';
-import aboutIcon from './assets/nav/about.svg';
+import "./styles/app.css";
+import "./styles/svgicons.css";
+import { Routes, Route, Navigate, NavLink, Outlet } from "react-router-dom";
+import About from "./tabs/About.jsx";
+import Appendix from "./tabs/Appendix.jsx";
+import Battle from "./tabs/Battle.jsx";
+import Search from "./tabs/Search.jsx";
+import LeaderBoard from "./tabs/Leaderboard.jsx";
 
 // Layout component containing the Tab Navigation & Outlet
 function TabsLayout() {
-  const getTabStyle = ({ isActive }) => ({
-    padding: '10px 16px',
-    textDecoration: 'none',
-    color: isActive ? '#002FA7' : '#333',
-    borderTop: isActive ? '3px solid #002FA7' : '3px solid transparent',
-    background: isActive ? '#dfeefb' : 'transparent',
-    fontWeight: isActive ? 'bold' : 'normal',
-  });
-
   return (
-    <div id="main-container">
-      <div id="top">
-        <h1>Cuber's Score</h1>
+    <div id="app">
+      <aside id="sidebar">
+        <h1 className="app-title">Cuber's Score</h1>
         <nav>
-          <NavLink to="search" style={getTabStyle}>
-            <img src={searchIcon} alt="Search" />
+          <NavLink to="search" className="nav-item">
+            <div className="icon icon-search"></div>
             <div className="tab-label">Search</div>
           </NavLink>
-          <NavLink to="battle" style={getTabStyle}>
-            <img src={battleIcon} alt="Battle" />
+          <NavLink to="battle" className="nav-item">
+            <div className="icon icon-battle"></div>
             <div className="tab-label">Battle</div>
           </NavLink>
-          <NavLink to="appendix" style={getTabStyle}>
-            <img src={appendixIcon} alt="Appendix" />
+          <NavLink to="leaderboard" className="nav-item">
+            <div className="icon icon-leaderboard"></div>
+            <div className="tab-label">Leaderboard</div>
+          </NavLink>
+          <NavLink to="appendix" className="nav-item">
+            <div className="icon icon-appendix"></div>
             <div className="tab-label">Appendix</div>
           </NavLink>
-          <NavLink to="about" style={getTabStyle}>
-            <img src={aboutIcon} alt="About" />
+          <NavLink to="about" className="nav-item">
+            <div className="icon icon-about"></div>
             <div className="tab-label">About</div>
           </NavLink>
         </nav>
-      </div>
-      <div id="outlet-container">
+        <footer>
+          <p>
+            <small>&copy; 2026 Cody Feng (2017FENG35). All rights reserved.</small>
+          </p>
+        </footer>
+      </aside>
+
+      <main id="outlet-container">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }
@@ -57,6 +56,7 @@ export default function App() {
         <Route index element={<Navigate to="search" replace />} />
         <Route path="search" element={<Search />} />
         <Route path="battle" element={<Battle />} />
+        <Route path="leaderboard" element={<LeaderBoard />} />
         <Route path="appendix" element={<Appendix />} />
         <Route path="about" element={<About />} />
       </Route>

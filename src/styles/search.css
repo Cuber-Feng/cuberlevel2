@@ -1,6 +1,22 @@
+:root {
+  /* Primary theme */
+  --color-primary: /* #002FA7 */ #A47251;
+  --color-primary-light: #ffeeb1;
+
+  /* Neutral colors */
+  --color-text: #333;
+  --color-text-muted: #98a1b1;
+  --color-border: #e0e0e0;
+  --color-border-light: #e6eaf1;
+
+  /* Background colors */
+  --color-background: /* #f8f9fa */ #fffae8;
+  --color-background-hover: #fdd77f;
+}
+
 @font-face {
-  font-family: "Twemoji Country Flags";
   src: url("https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2") format("woff2");
+  font-family: "Twemoji Country Flags";
   unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073, U+E0077, U+E007F;
 }
 
@@ -11,52 +27,49 @@ form {
 }
 
 input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
   width: 150px;
-  border-radius: 0;
+  padding: 10px;
   border: 0px;
-  border-bottom: 3px solid #ccc;
-  text-align: center;
+  border-bottom: 3px solid var(--color-primary-light);
+  border-radius: 0;
+  background-color: var(--color-background);
+  font-size: 16px;
   font-family: 'Monaco';
+  text-align: center;
   text-transform: uppercase;
 }
 
 input[type="text"]:focus {
+  border: 0px;
+  border-bottom: 3px solid var(--color-primary);
   outline: none;
-  border-color: #002FA7;
-  border: 0px;
-  border-bottom: 3px solid #002FA7;
-}
-
-button {
-  padding: 10px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 0;
-  border: 0px;
-  border-bottom: 3px solid #002FA7;
-  background-color: #002FA7;
-  color: white;
 }
 
 .cuber-info {
   display: flex;
+  padding: 10px 0;
   gap: 20px;
-  padding: 10px;
   font-family: "Twemoji Country Flags", 'helvetica', sans-serif;
 }
 
+.cuber-details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
 .name {
-  font-size: 24px;
-  font-weight: bold;
   margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 24px;
 }
 
 .avatar {
-  max-height: 100px;
   max-width: 100px;
+  max-height: 100px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .other-info {
@@ -67,9 +80,9 @@ button {
 }
 
 .other-info a {
-  text-decoration: none;
-  color: #002FA7;
+  color: var(--color-primary);
   font-weight: bold;
+  text-decoration: none;
 }
 
 table th.event-name,
@@ -83,13 +96,13 @@ table th.event-data {
 }
 
 table td.event-score {
+  background-color: var(--color-primary-light);
   text-align: end;
-  background-color: rgba(184, 216, 216, 0.295);
 }
 
 table {
-  margin: 0 auto;
-  width: 100%;
+  /* width: 100%; */
+  /* margin: 0 auto; */
 }
 
 .table-container {
