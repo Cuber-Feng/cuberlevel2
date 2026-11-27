@@ -5,7 +5,7 @@ import About from "./tabs/About.jsx";
 import Appendix from "./tabs/Appendix.jsx";
 import Battle from "./tabs/Battle.jsx";
 import Search from "./tabs/Search.jsx";
-import LeaderBoard from "./tabs/Leaderboard.jsx";
+import Leaderboard from "./tabs/Leaderboard.jsx";
 
 // Layout component containing the Tab Navigation & Outlet
 function TabsLayout() {
@@ -56,7 +56,7 @@ export default function App() {
         <Route index element={<Navigate to="search" replace />} />
         <Route path="search" element={<Search />} />
         <Route path="battle" element={<Battle />} />
-        <Route path="leaderboard" element={<LeaderBoard />} />
+        <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="appendix" element={<Appendix />} />
         <Route path="about" element={<About />} />
       </Route>

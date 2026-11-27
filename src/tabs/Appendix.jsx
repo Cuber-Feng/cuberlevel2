@@ -32,7 +32,7 @@ export default function Appendix() {
   return (
     <div id="content" className="content">
       <div className="card">
-        <h2>Appendix</h2>
+        <h1>Appendix</h1>
         <b>1. Different Kind of Events</b>
         <div id="eventList"></div>
 

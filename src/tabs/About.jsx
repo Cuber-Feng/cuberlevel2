@@ -13,7 +13,7 @@ export default function About() {
   return (
     <div id="content" className="content">
       <div className="card">
-        <h2>About</h2>
+        <h1>About</h1>
         <h3>1. How it work?</h3>
 
         <p>

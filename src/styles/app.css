@@ -92,13 +92,15 @@ nav .nav-item.active {
 
 h1 {
   margin: 0;
+  padding-bottom: 1rem;
   font-size: 2rem;
   font-family: 'Rockwell', 'Copperplate', 'Papyrus';
 }
 
 h2 {
   margin-top: 0;
-  text-align: right;
+  text-align: left;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 #sidebar {
