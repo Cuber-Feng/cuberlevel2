@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="canonical" href="https://cubers.codyfeng.dev/" />
   <title>Cuber's Score - Rubik's Cube Rankings & Statistics</title>
+  <script>
+    (function () {
+      const redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+
+      if (redirect && redirect !== location.pathname +
+        location.search + location.hash) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
 </head>
 
 <body>
