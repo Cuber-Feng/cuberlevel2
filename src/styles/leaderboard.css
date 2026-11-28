@@ -109,7 +109,7 @@
   background: var(--color-primary-light);
 }
 
-.ranking-table tr.highlighted {
+.ranking-table tbody tr.highlighted {
   background: var(--color-background-hover);
   font-weight: bold;
 }

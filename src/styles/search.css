@@ -105,6 +105,20 @@ table td.event-score {
   overflow-x: auto;
 }
 
+table {
+  border: none;
+}
+
+table td{
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+}
+
+table th{
+  border: none;
+  border-bottom: 3px solid var(--color-primary);
+}
+
 @media (max-width: 646px) {
   .cuber-info {
     flex-direction: column;

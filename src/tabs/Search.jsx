@@ -1,7 +1,7 @@
 import "../styles/search.css";
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
-import { idToEventName, codeToFlag, formatTime, getScore } from '../helper/tools.js';
+import { idToEventName, codeToFlag, formatTime, getScore, officialEventIds } from '../helper/tools.js';
 import csvUrl from "../assets/data/event_rank_summary.csv?url";
 import CubeIcon from "../components/CubeIcon.jsx";
 
@@ -14,6 +14,7 @@ export default function Search() {
   const [pRecords, setPRecords] = useState([]);
   const [scoreData, setSData] = useState([]);
   const [displayContents, setDis] = useState([]);
+  const [archiveEvents, setArchiveEvents] = useState(false);
   useEffect(() => {
     fetch(csvUrl)
       .then((res) => res.text())
@@ -89,9 +90,9 @@ export default function Search() {
       console.log(scoreData, pRecords);
       let dis = [];
       Object.entries(pRecords).map(([eventId, data]) => {
+        if (!officialEventIds.includes(eventId)) setArchiveEvents(true);
         let row = [];
         let s = getScore(eventId, scoreData, data.single.best, data.average ? data.average.best : -1);
-        // console.log(eventId, s);
         row.push(eventId, s, data.single.country_rank, data.single.continent_rank, data.single.world_rank, data.single.best);
         data.average
           ? row.push(data.average.best, data.average.world_rank, data.average.continent_rank, data.average.country_rank)
@@ -152,33 +153,82 @@ export default function Search() {
               <tbody>
                 {displayContents.map((row) => {
                   const event_id = row[0]; // First element used as key
-                  return (
-                    <tr key={event_id}>
-                      {row.map((cell, colIndex) =>
-                        colIndex === 0 ? (
-                          <td key={colIndex} className="event-name">
-                            <CubeIcon eventId={cell} />
-                          </td>
-                        ) : colIndex === 1 ? (
-                          <td key={colIndex} className='event-score'>
-                            {cell >=0 ? (Math.round(cell * 100) / 100).toFixed(2) : 'N/A'}
-                          </td>
-                        ) : colIndex == 5 || colIndex == 6 ? (
-                          <td key={colIndex} className='event-data'>
-                            {formatTime(event_id, cell, colIndex == 6 ? 'average' : 'single')}
-                          </td>
-                        ) : (
-                          <td key={colIndex} className='event-data'>
-                            {cell}
-                          </td>
-                        )
-                      )}
-                    </tr>
-                  );
+                  if (officialEventIds.includes(event_id)) {
+                    return (
+                      <tr key={event_id}>
+                        {row.map((cell, colIndex) =>
+                          colIndex === 0 ? (
+                            <td key={colIndex} className="event-name">
+                              <CubeIcon eventId={cell} />
+                            </td>
+                          ) : colIndex === 1 ? (
+                            <td key={colIndex} className='event-score'>
+                              {cell >= 0 ? (Math.round(cell * 100) / 100).toFixed(2) : 'N/A'}
+                            </td>
+                          ) : colIndex == 5 || colIndex == 6 ? (
+                            <td key={colIndex} className='event-data'>
+                              {formatTime(event_id, cell, colIndex == 6 ? 'average' : 'single')}
+                            </td>
+                          ) : (
+                            <td key={colIndex} className='event-data'>
+                              {cell}
+                            </td>
+                          )
+                        )}
+                      </tr>
+                    );
+                  }
                 })}
               </tbody>
             </table>
           </div>
+
+          {archiveEvents && (<><h2 className="archive-title">Archived Events</h2>
+            <div className="archive-events-table table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th className="event-name">Event</th>
+                    <th className="event-data">NR</th>
+                    <th className="event-data">CR</th>
+                    <th className="event-data">WR</th>
+                    <th className="event-data">Single</th>
+                    <th className="event-data">Average</th>
+                    <th className="event-data">WR</th>
+                    <th className="event-data">CR</th>
+                    <th className="event-data">NR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayContents.map((row) => {
+                    const event_id = row[0]; // First element used as key
+                    if (!officialEventIds.includes(event_id)) {
+                      return (
+                        <tr key={event_id}>
+                          {row.map((cell, colIndex) =>
+                            colIndex === 0 ? (
+                              <td key={colIndex} className="event-name">
+                                <CubeIcon eventId={cell} />
+                              </td>
+                            ) : colIndex === 1 ? (<></>) : colIndex == 5 || colIndex == 6 ? (
+                              <td key={colIndex} className='event-data'>
+                                {formatTime(event_id, cell, colIndex == 6 ? 'average' : 'single')}
+                              </td>
+                            ) : (
+                              <td key={colIndex} className='event-data'>
+                                {cell}
+                              </td>
+                            )
+                          )}
+                        </tr>
+                      );
+                    }
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>)
+          }
         </div>
       )}
     </div>

@@ -22,6 +22,26 @@ export function idToEventName(id) {
   return eventNames[id] || id;
 };
 
+export const officialEventIds = [
+  '333',
+  '222',
+  '444',
+  '555',
+  '666',
+  '777',
+  '333bf',
+  '333fm',
+  '333mbf',
+  '333oh',
+  '444bf',
+  '555bf',
+  'pyram',
+  'minx',
+  'skewb',
+  'sq1',
+  'fto'
+];
+
 export function codeToFlag(code) {
   return code.toUpperCase().replace(/./g, (char) =>
     String.fromCodePoint(char.charCodeAt(0) + 127397)

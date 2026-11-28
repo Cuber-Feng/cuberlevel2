@@ -6,16 +6,30 @@ import CubeIcon from "../components/CubeIcon.jsx";
 
 const headerMapping = {
   event_id: "Event",
-  wr: "WR (100pts)",
-  top001: "PR99.9 (95pts)",
-  top1: "PR99 (90pts)",
-  top5: "PR95 (80pts)",
-  top10: "PR90 (70pts)",
-  top20: "PR80 (60pts)",
-  top50: "PR50 (50pts)",
-  slowest: "Worst (40pts)",
+  wr: "WR",
+  top001: "PR99.9",
+  top1: "PR99",
+  top5: "PR95",
+  top10: "PR90",
+  top20: "PR80",
+  top50: "PR50",
+  slowest: "Worst",
   cnt: "Count"
 };
+
+const ptsMapping = {
+  event_id: "Points",
+  wr: "100",
+  top001: "95",
+  top1: "90",
+  top5: "80",
+  top10: "70",
+  top20: "60",
+  top50: "50",
+  slowest: "40",
+  cnt: "--"
+}
+
 
 export default function Appendix() {
   const [metadata, setMetadata] = useState(null);
@@ -70,6 +84,11 @@ export default function Appendix() {
                   ))}
                 </tr>
               ))}
+              <tr>
+                {data[0]?.map((header, i) => (
+                  <td key={i} className="pts-line">{ptsMapping[header] || header}</td>
+                ))}
+              </tr>
             </tbody>
           </table>
         </div>
