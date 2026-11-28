@@ -7,17 +7,24 @@ import CubeIcon from "../components/CubeIcon.jsx";
 const headerMapping = {
   event_id: "Event",
   wr: "WR (100pts)",
-  top001: "Top 0.1% (95pts)",
-  top1: "Top 1% (90pts)",
-  top5: "Top 5% (80pts)",
-  top10: "Top 10% (70pts)",
-  top20: "Top 20% (60pts)",
-  top50: "Top 50% (50pts)",
-  slowest: "Slowest (40pts)",
+  top001: "PR99.9 (95pts)",
+  top1: "PR99 (90pts)",
+  top5: "PR95 (80pts)",
+  top10: "PR90 (70pts)",
+  top20: "PR80 (60pts)",
+  top50: "PR50 (50pts)",
+  slowest: "Worst (40pts)",
   cnt: "Count"
 };
 
 export default function Appendix() {
+  const [metadata, setMetadata] = useState(null);
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}metadata.json`)
+      .then((res) => res.json())
+      .then((data) => setMetadata(data))
+      .catch((err) => console.error(err));
+  }, []);
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(csvUrl)
@@ -39,7 +46,9 @@ export default function Appendix() {
         <div id="eventList"></div>
 
         <b>2. Reference Table</b>
-        <div>(All blindfolded events use single result, others use average result)</div>
+        <div>
+          (All blindfolded events use single result, others use average result)
+        </div>
         <div className="table-container">
           <table>
             <thead>
@@ -64,6 +73,7 @@ export default function Appendix() {
             </tbody>
           </table>
         </div>
+        <p>(Last Updated: {metadata?.export_date})</p>
       </div>
     </div>
   );

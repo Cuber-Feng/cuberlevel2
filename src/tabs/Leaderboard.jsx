@@ -14,60 +14,13 @@ export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [searched, setSearched] = useState(false);
   const [highlightedId, setHighlightedId] = useState(null);
 
   // person_id -> array index
   const [idIndex, setIdIndex] = useState(new Map());
 
   // Load CSV
-  /*
-  useEffect(() => {
-    const mapleScoreUrl = new URL(
-      MAPLE_SCORE_PATH,
-      window.location.href
-    ).href;
-
-    Papa.parse(mapleScoreUrl, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      worker: true,
-
-      complete: (result) => {
-        try {
-          const rows = result.data.map((row) => ({
-            maple_rank: Number(row.maple_rank),
-            person_id: row.person_id.trim(),
-            name: row.name.trim(),
-            nationality: row.nationality.trim(),
-            maple: Number(row.maple),
-          }));
-
-          // Build person_id index
-          const index = new Map();
-
-          rows.forEach((row, i) => {
-            index.set(row.person_id, i);
-          });
-
-          setData(rows);
-          setIdIndex(index);
-          setLoading(false);
-        } catch (err) {
-          setError("Failed to process CSV data.");
-          setLoading(false);
-        }
-      },
-
-      error: () => {
-        setError("Failed to load ranking.csv.");
-        setLoading(false);
-      },
-    });
-  }, []);
-
-  */
-
   useEffect(() => {
     const loadCSV = async () => {
       try {
@@ -146,6 +99,7 @@ export default function Leaderboard() {
 
   // Search
   const handleSearch = (e) => {
+    setSearched(false);
     e.preventDefault();
 
     const query = searchQuery.trim();
@@ -154,13 +108,15 @@ export default function Leaderboard() {
       setSearchResults([]);
       return;
     }
-
+    setSearched(true);
     // First: exact person_id lookup (O(1))
-    const index = idIndex.get(query);
+    const index = idIndex.get(query.toUpperCase());
 
     if (index !== undefined) {
       jumpToResult(data[index]);
       setSearchResults([]);
+      setSearched(false);
+      setSearchQuery(query.toUpperCase());
       return;
     }
 
@@ -192,6 +148,7 @@ export default function Leaderboard() {
     if (results.length === 1) {
       jumpToResult(results[0]);
       setSearchResults([]);
+      setSearched(false);
     }
   };
 
@@ -215,8 +172,9 @@ export default function Leaderboard() {
       setCurrentPage(page);
 
       setTimeout(() => {
-        document.getElementById("ranking-table")?.scrollIntoView({
+        document.querySelector("#ranking-table .highlighted")?.scrollIntoView({
           behavior: "smooth",
+          block: "center",
         });
       }, 50);
     }
@@ -256,6 +214,7 @@ export default function Leaderboard() {
           onChange={(e) => {
             setSearchQuery(e.target.value);
             setSearchResults([]);
+            setSearched(false);
           }}
         />
 
@@ -263,32 +222,34 @@ export default function Leaderboard() {
       </form>
 
       {/* Search results */}
-      {searchResults.length > 0 && (
-        <div className="search-results">
-          {searchResults.map((person) => (
-            <button
-              key={person.person_id}
-              onClick={() => {
-                jumpToResult(person);
-                setSearchResults([]);
-              }}
-            >
-              #{person.maple_rank} - {person.name}({person.person_id})
-            </button>
-          ))}
-        </div>
-      )}
+      {searched && (searchResults.length > 0 ?
+        (
+          <div className="search-results">
+            {searchResults.map((person) => (
+              <button
+                key={person.person_id}
+                onClick={() => {
+                  jumpToResult(person);
+                  // setSearchResults([]);
+                  // setSearched(false);
+                }}
+              >
+                #{person.maple_rank} - {person.name}({person.person_id})
+              </button>
+            ))}
+          </div>
+        )
+        : (<div className="search-results"><p>No Result for "{searchQuery}"</p></div>))}
 
       {/* Remaining rankings */}
       <section id="ranking-table">
         <h2>Ranking</h2>
-
         <p>
-          Showing {remainingData.length === 0 ? 0 : currentPage * PAGE_SIZE + 1}
+          Showing {remainingData.length === 0 ? 0 : currentPage * PAGE_SIZE + 11}
           {" - "}
-          {Math.min((currentPage + 1) * PAGE_SIZE, remainingData.length)}
+          {Math.min((currentPage + 1) * PAGE_SIZE, remainingData.length) + 10}
           {" of "}
-          {remainingData.length.toLocaleString()}
+          {(remainingData.length + 10).toLocaleString()}
         </p>
 
         <RankingTable rows={currentData} highlightedId={highlightedId} />
@@ -337,31 +298,35 @@ export default function Leaderboard() {
 // Reusable ranking table
 function RankingTable({ rows, highlightedId }) {
   return (
-    <table className="ranking-table">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>WCA ID</th>
-          <th>Name</th>
-          <th>Nationality</th>
-          <th>Maple</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {rows.map((person) => (
-          <tr
-            key={person.person_id}
-            className={person.person_id === highlightedId ? "highlighted" : ""}
-          >
-            <td>{person.maple_rank}</td>
-            <td>{person.person_id}</td>
-            <td>{person.name}</td>
-            <td>{person.nationality}</td>
-            <td>{person.maple.toFixed(2)}</td>
+    <div className="table-container">
+      <table className="ranking-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th className="WCAID-col">WCA ID</th>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Maple</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {rows.map((person) => (
+            <tr
+              key={person.person_id}
+              className={person.person_id === highlightedId ? "highlighted" : ""}
+            >
+              <td>{person.maple_rank}</td>
+              <td className="WCAID-col">{person.person_id}</td>
+              <td>{person.name}&nbsp;<a href={`https://www.worldcubeassociation.org/persons/${person.person_id}`} target="_blank" rel="noopener noreferrer">
+                <img src="/cube_icons/wca-logo.svg" alt="WCA" className="WCA-LOGO" />
+              </a></td>
+              <td>{person.nationality}</td>
+              <td>{person.maple.toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

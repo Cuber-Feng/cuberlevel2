@@ -76,6 +76,11 @@
   background: var(--color-primary-light);
 }
 
+.search-results p{
+  text-align: center;
+  color: var(--color-text-muted)
+}
+
 .ranking-table {
   width: 100%;
   border-collapse: collapse;
@@ -96,7 +101,7 @@
   color: white;
 }
 
-.ranking-table tbody tr:nth-child(even){
+.ranking-table tbody tr:nth-child(even) {
   background-color: #fff4cb;
 }
 
@@ -134,4 +139,15 @@
 .pagination button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.ranking-table td.WCAID-col {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+}
+
+@media (max-width: 646px) {
+  .ranking-table .WCAID-col {
+    display: none;
+  }
 }

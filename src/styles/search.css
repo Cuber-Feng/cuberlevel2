@@ -100,11 +100,6 @@ table td.event-score {
   text-align: end;
 }
 
-table {
-  /* width: 100%; */
-  /* margin: 0 auto; */
-}
-
 .table-container {
   width: 100%;
   overflow-x: auto;
