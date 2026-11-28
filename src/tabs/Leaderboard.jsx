@@ -319,7 +319,7 @@ function RankingTable({ rows, highlightedId }) {
               <td>{person.maple_rank}</td>
               <td className="WCAID-col">{person.person_id}</td>
               <td>{person.name}&nbsp;<a href={`https://www.worldcubeassociation.org/persons/${person.person_id}`} target="_blank" rel="noopener noreferrer">
-                <img src="/cube_icons/wca-logo.svg" alt="WCA" className="WCA-LOGO" />
+                <img src="/cube_icons/wca-logo.webp" alt="WCA" className="WCA-LOGO" />
               </a></td>
               <td>{person.nationality}</td>
               <td>{person.maple.toFixed(2)}</td>

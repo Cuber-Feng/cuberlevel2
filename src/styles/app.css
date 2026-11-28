@@ -1,21 +1,46 @@
 :root {
   /* Primary theme */
-  --color-primary:
-    /* #002FA7 */
-    #A47251;
+  --color-primary: #A47251;
   --color-primary-light: #ffeeb1;
 
   /* Neutral colors */
   --color-text: #333;
   --color-text-muted: #98a1b1;
+  --color-text-reverse: white;
   --color-border: #e0e0e0;
   --color-border-light: #e6eaf1;
 
   /* Background colors */
-  --color-background:
-    /* #f8f9fa */
-    #fffae8;
+  --color-background: #fffae8;
   --color-background-hover: #ffe099;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+    --color-primary: #ffeeb1;
+    --color-primary-light: #3b3b3b;
+    --color-text-reverse: #462e1f;
+    --color-text: white;
+    --color-background: #1b1b1b;
+    --color-background-hover: #515151;
+    --color-border: #535353;
+  }
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-primary: #ffeeb1;
+  --color-primary-light: #3b3b3b;
+  --color-text-reverse: #462e1f;
+  --color-text: white;
+  --color-background: #1b1b1b;
+  --color-background-hover: #515151;
+  --color-border: #535353;
 }
 
 html,
@@ -31,19 +56,22 @@ body {
   font-family: helvetica;
 }
 
-a{
+a {
   color: var(--color-primary);
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-background-hover);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
@@ -101,7 +129,7 @@ h2 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   text-align: left;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 p {
@@ -144,6 +172,11 @@ p {
   color: var(--color-text-muted);
   font-size: 12px;
   text-align: center;
+}
+
+
+p.copyright {
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 #outlet-container {

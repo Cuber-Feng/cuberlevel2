@@ -7,6 +7,7 @@ import Appendix from "./tabs/Appendix.jsx";
 import Battle from "./tabs/Battle.jsx";
 import Search from "./tabs/Search.jsx";
 import Leaderboard from "./tabs/Leaderboard.jsx";
+import ThemeSwitcher from "./components/ThemeSwitcher.jsx";
 
 // Layout component containing the Tab Navigation & Outlet
 function TabsLayout() {
@@ -37,7 +38,8 @@ function TabsLayout() {
           </NavLink>
         </nav>
         <footer>
-          <p>
+          <ThemeSwitcher />
+          <p className="copyright">
             <small>&copy; 2026 Cody Feng (2017FENG35). All rights reserved.</small>
           </p>
         </footer>
@@ -45,6 +47,7 @@ function TabsLayout() {
 
       <main id="outlet-container">
         <Outlet />
+        <ThemeSwitcher />
       </main>
     </div>
   );

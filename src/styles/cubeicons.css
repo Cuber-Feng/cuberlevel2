@@ -1,19 +1,3 @@
-:root {
-  /* Primary theme */
-  --color-primary: #A47251;
-  --color-primary-light: #ffeeb1;
-
-  /* Neutral colors */
-  --color-text: #333;
-  --color-text-muted: #98a1b1;
-  --color-border: #e0e0e0;
-  --color-border-light: #e6eaf1;
-
-  /* Background colors */
-  --color-background: #fffae8;
-  --color-background-hover: #ffe099;
-}
-
 .cubeicon {
   mask-image: var(--icon-url);
   -webkit-mask-image: var(--icon-url);
