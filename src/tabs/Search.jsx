@@ -2,12 +2,14 @@ import "../styles/search.css";
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { idToEventName, codeToFlag, formatTime, getScore, officialEventIds } from '../helper/tools.js';
+import { useSearchParams } from "react-router-dom";
 import csvUrl from "../assets/data/event_rank_summary.csv?url";
 import CubeIcon from "../components/CubeIcon.jsx";
 
 export default function Search() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [wcaId, setWcaId] = useState(() => {
-    return localStorage.getItem('lastSearchedWcaId') || '';
+    return searchParams.get("wcaId") || localStorage.getItem('lastSearchedWcaId') || '';
   });
   const [personData, setPersonData] = useState(null);
   const [error, setError] = useState(null);
@@ -28,6 +30,7 @@ export default function Search() {
   }, []);
 
   const handleSearchVal = async (val) => {
+    setArchiveEvents(false);
     // e.preventDefault();
     if (!wcaId.trim()) return;
     setError(null);
@@ -51,6 +54,7 @@ export default function Search() {
   };
 
   const handleSearch = async (e) => {
+    setArchiveEvents(false);
     e.preventDefault();
     if (!wcaId.trim()) return;
     setError(null);
@@ -81,6 +85,7 @@ export default function Search() {
     localStorage.setItem('savedInputValue', val);
     if (val.length >= 10) {
       handleSearchVal(val);
+      setSearchParams({wcaId: val.toUpperCase()});
     }
   };
 
@@ -90,7 +95,7 @@ export default function Search() {
       console.log(scoreData, pRecords);
       let dis = [];
       Object.entries(pRecords).map(([eventId, data]) => {
-        if (!officialEventIds.includes(eventId)) setArchiveEvents(true);
+        if (!officialEventIds.includes(eventId)) {setArchiveEvents(true); console.log(`archived event: ${eventId}`)}
         let row = [];
         let s = getScore(eventId, scoreData, data.single.best, data.average ? data.average.best : -1);
         row.push(eventId, s, data.single.country_rank, data.single.continent_rank, data.single.world_rank, data.single.best);
