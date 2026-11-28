@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { idToEventName, formatTime, formatLargeNumber } from "../helper/tools.js";
 import csvUrl from "../assets/data/event_rank_summary.csv?url";
+import CubeIcon from "../components/CubeIcon.jsx";
 
 const headerMapping = {
   event_id: "Event",
@@ -52,8 +54,9 @@ export default function Appendix() {
                 <tr key={i}>
                   {row.map((cell, j) => (
                     <td key={j}>{
-                      j == 0 ? idToEventName(cell) :
-                        j < 9 ? formatTime(data[i + 1][0], cell, 'average') : formatLargeNumber(cell)
+                      j == 0 ?
+                        <CubeIcon eventId={cell}></CubeIcon>
+                        : j < 9 ? formatTime(data[i + 1][0], cell, 'average') : formatLargeNumber(cell)
                     }</td>
                   ))}
                 </tr>
